@@ -41,7 +41,7 @@ const Index = () => {
       <div className="bg-white shadow-sm border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-3 rounded-lg">
+            <div className="bg-green-700 p-3 rounded-lg">
               <Stethoscope className="w-8 h-8 text-white" />
             </div>
             <div>
