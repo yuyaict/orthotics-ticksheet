@@ -19,6 +19,7 @@ const PatientInfo: React.FC<PatientInfoProps> = ({ hn, setHn, insuranceType, set
     { value: 'social_security', label: 'ประกันสังคม' },
     { value: 'private', label: 'จ่ายตรง' },
     { value: 'company', label: 'ประกันบริษัท' },
+    { value: 'bot', label: 'สิทธิ BOT' },
   ];
 
   return (
