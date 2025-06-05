@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Stethoscope, Calculator, FileText } from 'lucide-react';
 import PatientInfo from '@/components/PatientInfo';
@@ -13,7 +12,12 @@ const Index = () => {
   const [serviceItems, setServiceItems] = useState<ServiceItem[]>([]);
 
   const handleAddItem = (item: ServiceItem) => {
-    setServiceItems(prev => [...prev, item]);
+    // Add default blueFlagRights if not provided
+    const itemWithBlueFlagRights = {
+      ...item,
+      blueFlagRights: item.blueFlagRights || 'ไม่มี'
+    };
+    setServiceItems(prev => [...prev, itemWithBlueFlagRights]);
   };
 
   const handleUpdateQuantity = (id: string, quantity: number) => {
