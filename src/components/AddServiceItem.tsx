@@ -9,14 +9,14 @@ import { ServiceItem } from '@/types/medical';
 
 interface AddServiceItemProps {
   onAddItem: (item: ServiceItem) => void;
-  serviceDatabase: { code: string; name: string; price: number }[];
+  serviceDatabase: { code: string; name: string; price: number; credit: number; cgcode: string; blue_flag_right: string }[];
 }
 
 const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatabase }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number } | null>(null);
+  const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number; credit: number; cgcode: string; blue_flag_right: string } | null>(null);
   const [quantity, setQuantity] = useState(1);
-  const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number }[]>([]);
+  const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; credit: number; cgcode: string; blue_flag_right: string }[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const handleSearch = (value: string) => {
@@ -35,7 +35,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
     }
   };
 
-  const selectService = (service: { code: string; name: string; price: number }) => {
+  const selectService = (service: { code: string; name: string; price: number; credit: number; cgcode: string; blue_flag_right: string }) => {
     setSelectedService(service);
     setSearchTerm(`${service.code} - ${service.name}`);
     setShowSuggestions(false);
@@ -47,7 +47,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
         id: Date.now().toString(),
         code: selectedService.code,
         name: selectedService.name,
-        blueFlagRights: 'ไม่มี', // Add default value for blueFlagRights
+        blueFlagRights: selectedService.blue_flag_right || 'ไม่มี',
         quantity,
         unitPrice: selectedService.price,
         totalPrice: selectedService.price * quantity,
@@ -88,12 +88,17 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                 {filteredServices.slice(0, 10).map((service) => (
                   <div
                     key={service.code}
-                    className="px-4 py-2 hover:bg-blue-50 cursor-pointer border-b last:border-b-0"
+                    className="px-4 py-3 hover:bg-blue-50 cursor-pointer border-b last:border-b-0"
                     onClick={() => selectService(service)}
                   >
                     <div className="font-medium text-sm">{service.code}</div>
                     <div className="text-gray-600 text-sm">{service.name}</div>
-                    <div className="text-blue-600 text-sm font-medium">{service.price.toLocaleString()} บาท</div>
+                    <div className="flex justify-between items-center mt-1">
+                      <div className="text-blue-600 text-sm font-medium">{service.price.toLocaleString()} บาท</div>
+                      <div className="text-green-600 text-sm font-medium">
+                        Credit: {service.credit.toLocaleString()}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -131,6 +136,9 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
             <div className="text-sm text-blue-600 font-medium">
               ราคาต่อหน่วย: {selectedService.price.toLocaleString()} บาท | 
               ราคารวม: {(selectedService.price * quantity).toLocaleString()} บาท
+            </div>
+            <div className="text-sm text-green-600 font-medium">
+              Credit: {selectedService.credit.toLocaleString()}
             </div>
           </div>
         )}
