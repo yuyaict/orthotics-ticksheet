@@ -47,6 +47,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
         id: Date.now().toString(),
         code: selectedService.code,
         name: selectedService.name,
+        blueFlagRights: 'ไม่มี', // Add default value for blueFlagRights
         quantity,
         unitPrice: selectedService.price,
         totalPrice: selectedService.price * quantity,
