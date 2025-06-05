@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -99,6 +98,14 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                         Credit: {service.credit.toLocaleString()}
                       </div>
                     </div>
+                    <div className="flex justify-between items-center mt-1">
+                      <div className="text-purple-600 text-xs">
+                        รหัสเบิก: {service.cgcode || 'ไม่มี'}
+                      </div>
+                      <div className="text-orange-600 text-xs">
+                        สิทธิธงฟ้า: {service.blue_flag_right || 'ไม่มี'}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -139,6 +146,14 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
             </div>
             <div className="text-sm text-green-600 font-medium">
               Credit: {selectedService.credit.toLocaleString()}
+            </div>
+            <div className="flex justify-between items-center mt-2">
+              <div className="text-sm text-purple-600">
+                <strong>รหัสเบิก:</strong> {selectedService.cgcode || 'ไม่มี'}
+              </div>
+              <div className="text-sm text-orange-600">
+                <strong>สิทธิธงฟ้า:</strong> {selectedService.blue_flag_right || 'ไม่มี'}
+              </div>
             </div>
           </div>
         )}
