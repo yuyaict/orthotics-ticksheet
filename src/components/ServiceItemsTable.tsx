@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -20,6 +19,9 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
     const creditToUse = item.totalCredit > item.totalPrice ? item.totalPrice : item.totalCredit;
     return sum + creditToUse;
   }, 0);
+
+  // Calculate excess payment (total amount - total credit)
+  const excessPayment = totalAmount - totalCredit;
 
   return (
     <Card className="w-full mb-6">
@@ -103,6 +105,16 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                 </div>
                 <div className="text-sm text-gray-600 mt-1">
                   (เพดานเบิกที่ใช้ได้จริง)
+                </div>
+              </div>
+            </div>
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 min-w-64">
+              <div className="text-right">
+                <div className="text-lg font-semibold text-orange-800">
+                  รวมส่วนเกินสิทธิ: {excessPayment.toLocaleString()} บาท
+                </div>
+                <div className="text-sm text-gray-600 mt-1">
+                  (ยอดที่ต้องชำระจริง)
                 </div>
               </div>
             </div>
