@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -95,7 +96,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                     <div className="flex justify-between items-center mt-1">
                       <div className="text-blue-600 text-sm font-medium">{service.price.toLocaleString()} บาท</div>
                       <div className="text-green-600 text-sm font-medium">
-                        Credit: {service.credit.toLocaleString()}
+                        เบิกได้: {service.credit.toLocaleString()}
                       </div>
                     </div>
                     <div className="flex justify-between items-center mt-1">
@@ -145,7 +146,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               ราคารวม: {(selectedService.price * quantity).toLocaleString()} บาท
             </div>
             <div className="text-sm text-green-600 font-medium">
-              Credit: {selectedService.credit.toLocaleString()}
+              เบิกได้: {selectedService.credit.toLocaleString()}
             </div>
             <div className="flex justify-between items-center mt-2">
               <div className="text-sm text-purple-600">
