@@ -14,6 +14,12 @@ interface ServiceItemsTableProps {
 
 const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQuantity, onRemoveItem }) => {
   const totalAmount = items.reduce((sum, item) => sum + item.totalPrice, 0);
+  
+  // Calculate total credit with condition: if totalCredit > totalPrice, use totalPrice instead
+  const totalCredit = items.reduce((sum, item) => {
+    const creditToUse = item.totalCredit > item.totalPrice ? item.totalPrice : item.totalCredit;
+    return sum + creditToUse;
+  }, 0);
 
   return (
     <Card className="w-full mb-6">
@@ -89,7 +95,17 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
         )}
         
         {items.length > 0 && (
-          <div className="mt-6 flex justify-end">
+          <div className="mt-6 flex justify-end gap-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 min-w-64">
+              <div className="text-right">
+                <div className="text-lg font-semibold text-green-800">
+                  รวมเบิกได้: {totalCredit.toLocaleString()} บาท
+                </div>
+                <div className="text-sm text-gray-600 mt-1">
+                  (เพดานเบิกที่ใช้ได้จริง)
+                </div>
+              </div>
+            </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 min-w-64">
               <div className="text-right">
                 <div className="text-lg font-semibold text-blue-800">
