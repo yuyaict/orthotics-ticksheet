@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Stethoscope, Calculator, FileText } from 'lucide-react';
 import PatientInfo from '@/components/PatientInfo';
@@ -13,11 +14,13 @@ const Index = () => {
 
   const handleAddItem = (item: ServiceItem) => {
     // Add default blueFlagRights if not provided
-    const itemWithBlueFlagRights = {
+    const itemWithDefaults = {
       ...item,
-      blueFlagRights: item.blueFlagRights || 'ไม่มี'
+      blueFlagRights: item.blueFlagRights || 'ไม่มี',
+      cgcode: item.cgcode || '',
+      totalCredit: item.credit * item.quantity
     };
-    setServiceItems(prev => [...prev, itemWithBlueFlagRights]);
+    setServiceItems(prev => [...prev, itemWithDefaults]);
   };
 
   const handleUpdateQuantity = (id: string, quantity: number) => {
@@ -27,7 +30,8 @@ const Index = () => {
           return {
             ...item,
             quantity,
-            totalPrice: item.unitPrice * quantity
+            totalPrice: item.unitPrice * quantity,
+            totalCredit: item.credit * quantity
           };
         }
         return item;

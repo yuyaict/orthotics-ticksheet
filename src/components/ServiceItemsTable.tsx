@@ -35,10 +35,12 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                 <tr className="bg-gray-50">
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">ลำดับ</th>
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">รหัสรายการ</th>
+                  <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">รหัสเบิก</th>
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">ชื่อรายการ</th>
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">สิทธิธงฟ้า</th>
                   <th className="border border-gray-200 px-4 py-3 text-center text-sm font-medium text-gray-700">จำนวน</th>
                   <th className="border border-gray-200 px-4 py-3 text-right text-sm font-medium text-gray-700">ราคาต่อหน่วย</th>
+                  <th className="border border-gray-200 px-4 py-3 text-right text-sm font-medium text-gray-700">เพดานเบิก</th>
                   <th className="border border-gray-200 px-4 py-3 text-right text-sm font-medium text-gray-700">ราคารวม</th>
                   <th className="border border-gray-200 px-4 py-3 text-center text-sm font-medium text-gray-700">จัดการ</th>
                 </tr>
@@ -48,6 +50,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                   <tr key={item.id} className="hover:bg-gray-50 transition-colors">
                     <td className="border border-gray-200 px-4 py-3 text-center text-sm">{index + 1}</td>
                     <td className="border border-gray-200 px-4 py-3 text-sm font-medium">{item.code}</td>
+                    <td className="border border-gray-200 px-4 py-3 text-sm">{item.cgcode || '-'}</td>
                     <td className="border border-gray-200 px-4 py-3 text-sm">{item.name}</td>
                     <td className="border border-gray-200 px-4 py-3 text-sm">{item.blueFlagRights || '-'}</td>
                     <td className="border border-gray-200 px-4 py-3 text-center">
@@ -61,6 +64,9 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                     </td>
                     <td className="border border-gray-200 px-4 py-3 text-right text-sm">
                       {item.unitPrice.toLocaleString()} บาท
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 text-right text-sm text-green-600 font-medium">
+                      {item.totalCredit.toLocaleString()}
                     </td>
                     <td className="border border-gray-200 px-4 py-3 text-right text-sm font-medium text-blue-600">
                       {item.totalPrice.toLocaleString()} บาท

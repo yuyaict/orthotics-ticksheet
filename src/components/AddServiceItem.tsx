@@ -48,9 +48,12 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
         code: selectedService.code,
         name: selectedService.name,
         blueFlagRights: selectedService.blue_flag_right || 'ไม่มี',
+        cgcode: selectedService.cgcode || '',
+        credit: selectedService.credit,
         quantity,
         unitPrice: selectedService.price,
         totalPrice: selectedService.price * quantity,
+        totalCredit: selectedService.credit * quantity,
       };
       onAddItem(newItem);
       setSearchTerm('');
