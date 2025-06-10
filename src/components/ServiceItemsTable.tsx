@@ -30,8 +30,8 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
     return sum;
   }, 0);
 
-  // Calculate excess payment (total amount - total credit)
-  const excessPayment = totalAmount - totalCredit;
+  // Calculate excess payment (total amount - total credit - total deduction)
+  const excessPayment = totalAmount - totalCredit - totalDeduction;
 
   return (
     <Card className="w-full mb-6">
