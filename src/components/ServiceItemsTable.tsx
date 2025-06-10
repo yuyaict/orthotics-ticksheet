@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -18,6 +19,15 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
   const totalCredit = items.reduce((sum, item) => {
     const creditToUse = item.totalCredit > item.totalPrice ? item.totalPrice : item.totalCredit;
     return sum + creditToUse;
+  }, 0);
+
+  // Calculate total deduction for items with blue flag rights
+  const totalDeduction = items.reduce((sum, item) => {
+    if (item.blueFlagRights && item.blueFlagRights !== 'ไม่มี' && item.blueFlagRights !== '-') {
+      const deduction = item.totalPrice - item.totalCredit;
+      return sum + (deduction > 0 ? deduction : 0);
+    }
+    return sum;
   }, 0);
 
   // Calculate excess payment (total amount - total credit)
@@ -71,13 +81,13 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                       />
                     </td>
                     <td className="border border-gray-200 px-4 py-3 text-right text-sm">
-                      {item.unitPrice.toLocaleString()} บาท
+                      {item.unitPrice.toLocaleString()}
                     </td>
                     <td className="border border-gray-200 px-4 py-3 text-right text-sm text-green-600 font-medium">
                       {item.totalCredit.toLocaleString()}
                     </td>
                     <td className="border border-gray-200 px-4 py-3 text-right text-sm font-medium text-blue-600">
-                      {item.totalPrice.toLocaleString()} บาท
+                      {item.totalPrice.toLocaleString()}
                     </td>
                     <td className="border border-gray-200 px-4 py-3 text-center">
                       <Button
@@ -105,6 +115,16 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                 </div>
                 <div className="text-sm text-gray-600 mt-1">
                   (เพดานเบิกที่ใช้ได้จริง)
+                </div>
+              </div>
+            </div>
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 min-w-64">
+              <div className="text-right">
+                <div className="text-lg font-semibold text-purple-800">
+                  รวมลดหย่อนได้: {totalDeduction.toLocaleString()} บาท
+                </div>
+                <div className="text-sm text-gray-600 mt-1">
+                  (สำหรับรายการที่มีสิทธิธงฟ้า)
                 </div>
               </div>
             </div>
