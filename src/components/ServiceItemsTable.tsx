@@ -108,6 +108,16 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
         
         {items.length > 0 && (
           <div className="mt-6 flex justify-end gap-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 min-w-64">
+              <div className="text-right">
+                <div className="text-lg font-semibold text-blue-800">
+                  รวมทั้งสิ้น: {totalAmount.toLocaleString()} บาท
+                </div>
+                <div className="text-sm text-gray-600 mt-1">
+                  ({items.length} รายการ)
+                </div>
+              </div>
+            </div>
             <div className="bg-green-50 border border-green-200 rounded-lg p-4 min-w-64">
               <div className="text-right">
                 <div className="text-lg font-semibold text-green-800">
@@ -128,23 +138,13 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                 </div>
               </div>
             </div>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 min-w-64">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 min-w-64">
               <div className="text-right">
-                <div className="text-lg font-semibold text-orange-800">
+                <div className="text-lg font-semibold text-red-800">
                   รวมส่วนเกินสิทธิ: {excessPayment.toLocaleString()} บาท
                 </div>
                 <div className="text-sm text-gray-600 mt-1">
                   (ยอดที่ต้องชำระจริง)
-                </div>
-              </div>
-            </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 min-w-64">
-              <div className="text-right">
-                <div className="text-lg font-semibold text-blue-800">
-                  รวมทั้งสิ้น: {totalAmount.toLocaleString()} บาท
-                </div>
-                <div className="text-sm text-gray-600 mt-1">
-                  ({items.length} รายการ)
                 </div>
               </div>
             </div>
