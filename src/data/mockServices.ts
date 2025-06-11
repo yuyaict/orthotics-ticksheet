@@ -1,6 +1,6 @@
 
 export const serviceDatabase = [
-  { code: 'A00001', name: 'ถุงมือยางสำหรับมือขาดบางส่วน', price: 7470, credit: 5000, cgcode: '8005', blue_flag_right: '' }, 
+{ code: 'A00001', name: 'ถุงมือยางสำหรับมือขาดบางส่วน', price: 7470, credit: 5000, cgcode: '8005', blue_flag_right: '' }, 
 { code: 'A00002', name: 'นิ้วเทียม (นิ้วหัวแม่มือ/นิ้วชี้/นิ้วกลาง/นิ้วนาง/นิ้วก้อย)', price: 7520, credit: 5000, cgcode: '8005', blue_flag_right: '' }, 
 { code: 'A00003', name: 'ถุงมือยาง (มากกว่า 2 นิ้ว หรือสำหรับมือขาดบางส่วน)', price: 7640, credit: 5000, cgcode: '8005', blue_flag_right: '' }, 
 { code: 'A00004', name: 'แขนเทียมระดับข้อมือ (เบ้าแขนเทียมและถุงมือยาง) อายุการใช้งาน : ไม่น้อยกว่า 2 ปี', price: 9470, credit: 17200, cgcode: '8102', blue_flag_right: '' }, 
