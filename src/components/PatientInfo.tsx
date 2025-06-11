@@ -49,8 +49,8 @@ const PatientInfo: React.FC<PatientInfoProps> = ({ hn, setHn, insuranceType, set
             <Label htmlFor="insurance" className="text-sm font-medium text-gray-700">
               สิทธิการรักษา
             </Label>
-            <Select value={insuranceType} onValueChange={setInsuranceType} disabled>
-              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 bg-gray-100">
+            <Select value={insuranceType} onValueChange={setInsuranceType}>
+              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
                 <SelectValue placeholder="เลือกสิทธิการรักษา" />
               </SelectTrigger>
               <SelectContent className="bg-white z-50">
