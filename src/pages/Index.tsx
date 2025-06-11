@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Stethoscope } from 'lucide-react';
 import PatientInfo from '@/components/PatientInfo';
@@ -6,13 +5,29 @@ import AddServiceItem from '@/components/AddServiceItem';
 import ServiceItemsTable from '@/components/ServiceItemsTable';
 import { ServiceItem } from '@/types/medical';
 import { serviceDatabase } from '@/data/mockServices';
+import { useToast } from '@/hooks/use-toast';
+import { Toaster } from '@/components/ui/toaster';
 
 const Index = () => {
   const [hn, setHn] = useState('');
   const [insuranceType, setInsuranceType] = useState('');
   const [serviceItems, setServiceItems] = useState<ServiceItem[]>([]);
+  const { toast } = useToast();
 
   const handleAddItem = (item: ServiceItem) => {
+    // ตรวจสอบรายการซ้ำ
+    const isDuplicate = serviceItems.some(existingItem => existingItem.code === item.code);
+    
+    if (isDuplicate) {
+      // แสดง popup แจ้งเตือนสีแดง
+      toast({
+        title: "พบรายการซ้ำ",
+        description: `รายการ ${item.code} - ${item.name} มีอยู่ในตารางแล้ว`,
+        variant: "destructive",
+      });
+      return; // ไม่เพิ่มรายการซ้ำ
+    }
+
     // Add default blueFlagRights if not provided
     const itemWithDefaults = {
       ...item,
@@ -98,6 +113,9 @@ const Index = () => {
           </p>
         </div>
       </div>
+
+      {/* Toast notifications */}
+      <Toaster />
     </div>
   );
 };
