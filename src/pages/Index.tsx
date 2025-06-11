@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Stethoscope, Calculator, FileText } from 'lucide-react';
+import { Stethoscope } from 'lucide-react';
 import PatientInfo from '@/components/PatientInfo';
 import AddServiceItem from '@/components/AddServiceItem';
 import ServiceItemsTable from '@/components/ServiceItemsTable';
@@ -87,20 +87,6 @@ const Index = () => {
             onUpdateQuantity={handleUpdateQuantity}
             onRemoveItem={handleRemoveItem}
           />
-
-          {/* Summary Actions */}
-          {serviceItems.length > 0 && (
-            <div className="flex justify-end gap-4">
-              <button className="flex items-center gap-2 px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
-                <FileText className="w-5 h-5" />
-                พิมพ์ใบเสร็จ
-              </button>
-              <button className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                <Calculator className="w-5 h-5" />
-                คำนวณค่ารักษา
-              </button>
-            </div>
-          )}
         </div>
       </div>
 
