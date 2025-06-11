@@ -14,12 +14,11 @@ interface PatientInfoProps {
 
 const PatientInfo: React.FC<PatientInfoProps> = ({ hn, setHn, insuranceType, setInsuranceType }) => {
   const insuranceOptions = [
-    { value: 'universal', label: 'บัตรทอง (หลักประกันสุขภาพถ้วนหน้า)' },
-    { value: 'civil_servant', label: 'ข้าราชการ' },
+    { value: 'civil_servant', label: 'กรมบัญชีกลาง' },
+    { value: 'universal', label: 'บัตรทอง' },
+    { value: 'universal_disability', label: 'บัตรทอง (คนพิการ)' },
     { value: 'social_security', label: 'ประกันสังคม' },
-    { value: 'private', label: 'จ่ายตรง' },
-    { value: 'company', label: 'ประกันบริษัท' },
-    { value: 'bot', label: 'สิทธิ BOT' },
+    { value: 'social_security_disability', label: 'ประกันสังคม (ทุพลภาพ)' },
   ];
 
   return (
