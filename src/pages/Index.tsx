@@ -5,7 +5,7 @@ import PatientInfo from '@/components/PatientInfo';
 import AddServiceItem from '@/components/AddServiceItem';
 import ServiceItemsTable from '@/components/ServiceItemsTable';
 import { ServiceItem } from '@/types/medical';
-import { serviceDatabase } from '@/data/fixedMockServices';
+import { serviceDatabase } from '@/data/MockServices';
 import { useToast } from '@/hooks/use-toast';
 import { Toaster } from '@/components/ui/toaster';
 
