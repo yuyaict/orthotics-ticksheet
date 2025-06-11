@@ -1,10 +1,11 @@
+
 import React, { useState } from 'react';
 import { Stethoscope } from 'lucide-react';
 import PatientInfo from '@/components/PatientInfo';
 import AddServiceItem from '@/components/AddServiceItem';
 import ServiceItemsTable from '@/components/ServiceItemsTable';
 import { ServiceItem } from '@/types/medical';
-import { serviceDatabase } from '@/data/mockServices';
+import { serviceDatabase } from '@/data/fixedMockServices';
 import { useToast } from '@/hooks/use-toast';
 import { Toaster } from '@/components/ui/toaster';
 
