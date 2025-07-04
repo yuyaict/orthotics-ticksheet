@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -9,19 +8,19 @@ import { ServiceItem } from '@/types/medical';
 
 interface AddServiceItemProps {
   onAddItem: (item: ServiceItem) => void;
-  serviceDatabase: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cgcode: string; uc_code: string; ss_code: string; blue_flag_right: string }[];
+  serviceDatabase: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string }[];
   insuranceType: string;
 }
 
 const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatabase, insuranceType }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cgcode: string; uc_code: string; ss_code: string; blue_flag_right: string } | null>(null);
+  const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string } | null>(null);
   const [quantity, setQuantity] = useState(1);
-  const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cgcode: string; uc_code: string; ss_code: string; blue_flag_right: string }[]>([]);
+  const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string }[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Function to get the appropriate billing code based on insurance type
-  const getBillingCode = (service: { cgcode: string; uc_code: string; ss_code: string }) => {
+  const getBillingCode = (service: { cg_code: string; uc_code: string; ss_code: string }) => {
     const insuranceOptions = [
       { value: 'civil_servant', label: 'กรมบัญชีกลาง', group: 'cg' },
       { value: 'universal', label: 'บัตรทอง', group: 'uc' },
@@ -39,7 +38,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
       case 'ss':
         return service.ss_code || 'ไม่มี';
       default:
-        return service.cgcode || 'ไม่มี';
+        return service.cg_code || 'ไม่มี';
     }
   };
 
@@ -77,7 +76,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
     }
   };
 
-  const selectService = (service: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cgcode: string; uc_code: string; ss_code: string; blue_flag_right: string }) => {
+  const selectService = (service: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string }) => {
     setSelectedService(service);
     setSearchTerm(`${service.code} - ${service.name}`);
     setShowSuggestions(false);

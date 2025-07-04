@@ -1,5 +1,4 @@
 
-
 export const serviceDatabase = [
   { code: 'A00001', name: 'ถุงมือยางสำหรับมือขาดบางส่วน', price: 7470, cg_credit: 5000, uc_credit: 0, ucx_credit: 0, ss_credit: 0, ssx_credit: 0, cg_code: '8005', uc_code: '', ss_code: '', blue_flag_right: '' }, 
   { code: 'A00002', name: 'นิ้วเทียม (นิ้วหัวแม่มือ/นิ้วชี้/นิ้วกลาง/นิ้วนาง/นิ้วก้อย)', price: 7520, cg_credit: 5000, uc_credit: 0, ucx_credit: 0, ss_credit: 0, ssx_credit: 0, cg_code: '8005', uc_code: '', ss_code: '', blue_flag_right: '' }, 
@@ -11,4 +10,3 @@ export const serviceDatabase = [
   { code: 'B00004', name: 'แขนเทียมต่ำกว่าระดับศอกชนิดสวยงาม (เบ้าแขนเทียมและถุงมือยาง) อายุการใช้งาน : ไม่น้อยกว่า 2 ปี', price: 9680, cg_credit: 17200, uc_credit: 0, ucx_credit: 17200, ss_credit: 17200, ssx_credit: 0, cg_code: '8102', uc_code: '8102', ss_code: '8102', blue_flag_right: 'มี' }, 
   { code: 'B00005', name: 'แขนเทียมต่ำกว่าระดับศอกส่วนปลายชนิดตะขอโลหะ อายุการใช้งาน : ไม่น้อยกว่า 2 ปี', price: 53650, cg_credit: 28500, uc_credit: 0, ucx_credit: 28500, ss_credit: 28500, ssx_credit: 0, cg_code: '8103', uc_code: '8103', ss_code: '8103', blue_flag_right: '' }, 
 ];
-
