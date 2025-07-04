@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -60,6 +61,15 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
     }
   };
 
+  // Function to get blue flag rights based on insurance type
+  const getBlueFlagRights = (service: { blue_flag_right: string }) => {
+    // Only show blue flag rights for disability insurance types
+    if (insuranceType === 'universal_disability' || insuranceType === 'social_security_disability') {
+      return service.blue_flag_right || 'ไม่มี';
+    }
+    return 'ไม่มี';
+  };
+
   const handleSearch = (value: string) => {
     setSearchTerm(value);
     if (value.length > 0) {
@@ -89,7 +99,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
         id: Date.now().toString(),
         code: selectedService.code,
         name: selectedService.name,
-        blueFlagRights: selectedService.blue_flag_right || 'ไม่มี',
+        blueFlagRights: getBlueFlagRights(selectedService),
         cgcode: getBillingCode(selectedService),
         credit: creditCeiling,
         quantity,
@@ -149,7 +159,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                         รหัสเบิก: {getBillingCode(service)}
                       </div>
                       <div className="text-orange-600 text-xs">
-                        สิทธิธงฟ้า: {service.blue_flag_right || 'ไม่มี'}
+                        สิทธิธงฟ้า: {getBlueFlagRights(service)}
                       </div>
                     </div>
                   </div>
@@ -198,7 +208,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                 <strong>รหัสเบิก:</strong> {getBillingCode(selectedService)}
               </div>
               <div className="text-sm text-orange-600">
-                <strong>สิทธิธงฟ้า:</strong> {selectedService.blue_flag_right || 'ไม่มี'}
+                <strong>สิทธิธงฟ้า:</strong> {getBlueFlagRights(selectedService)}
               </div>
             </div>
           </div>
