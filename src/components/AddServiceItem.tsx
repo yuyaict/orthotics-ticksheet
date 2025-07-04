@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -19,6 +18,14 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
   const [quantity, setQuantity] = useState(1);
   const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string }[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+
+  // Update selected service display when insurance type changes
+  useEffect(() => {
+    if (selectedService) {
+      // Force a re-render by updating the search term to reflect new insurance type
+      setSearchTerm(`${selectedService.code} - ${selectedService.name}`);
+    }
+  }, [insuranceType, selectedService]);
 
   // Function to get the appropriate billing code based on insurance type
   const getBillingCode = (service: { cg_code: string; uc_code: string; ss_code: string }) => {
