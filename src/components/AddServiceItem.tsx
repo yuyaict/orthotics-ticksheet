@@ -9,15 +9,39 @@ import { ServiceItem } from '@/types/medical';
 
 interface AddServiceItemProps {
   onAddItem: (item: ServiceItem) => void;
-  serviceDatabase: { code: string; name: string; price: number; credit: number; cgcode: string; blue_flag_right: string }[];
+  serviceDatabase: { code: string; name: string; price: number; credit: number; cgcode: string; uc_code: string; ss_code: string; blue_flag_right: string }[];
+  insuranceType: string;
 }
 
-const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatabase }) => {
+const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatabase, insuranceType }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number; credit: number; cgcode: string; blue_flag_right: string } | null>(null);
+  const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number; credit: number; cgcode: string; uc_code: string; ss_code: string; blue_flag_right: string } | null>(null);
   const [quantity, setQuantity] = useState(1);
-  const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; credit: number; cgcode: string; blue_flag_right: string }[]>([]);
+  const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; credit: number; cgcode: string; uc_code: string; ss_code: string; blue_flag_right: string }[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+
+  // Function to get the appropriate billing code based on insurance type
+  const getBillingCode = (service: { cgcode: string; uc_code: string; ss_code: string }) => {
+    const insuranceOptions = [
+      { value: 'civil_servant', label: 'กรมบัญชีกลาง', group: 'cg' },
+      { value: 'universal', label: 'บัตรทอง', group: 'uc' },
+      { value: 'universal_disability', label: 'บัตรทอง (คนพิการ)', group: 'uc' },
+      { value: 'social_security', label: 'ประกันสังคม', group: 'ss' },
+      { value: 'social_security_disability', label: 'ประกันสังคม (ทุพลภาพ)', group: 'ss' },
+    ];
+
+    const selectedInsurance = insuranceOptions.find(option => option.value === insuranceType);
+    const group = selectedInsurance?.group || 'cg'; // Default to 'cg' if no insurance selected
+
+    switch (group) {
+      case 'uc':
+        return service.uc_code || 'ไม่มี';
+      case 'ss':
+        return service.ss_code || 'ไม่มี';
+      default:
+        return service.cgcode || 'ไม่มี';
+    }
+  };
 
   const handleSearch = (value: string) => {
     setSearchTerm(value);
@@ -35,7 +59,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
     }
   };
 
-  const selectService = (service: { code: string; name: string; price: number; credit: number; cgcode: string; blue_flag_right: string }) => {
+  const selectService = (service: { code: string; name: string; price: number; credit: number; cgcode: string; uc_code: string; ss_code: string; blue_flag_right: string }) => {
     setSelectedService(service);
     setSearchTerm(`${service.code} - ${service.name}`);
     setShowSuggestions(false);
@@ -48,7 +72,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
         code: selectedService.code,
         name: selectedService.name,
         blueFlagRights: selectedService.blue_flag_right || 'ไม่มี',
-        cgcode: selectedService.cgcode || '',
+        cgcode: getBillingCode(selectedService),
         credit: selectedService.credit,
         quantity,
         unitPrice: selectedService.price,
@@ -104,7 +128,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                     </div>
                     <div className="flex justify-between items-center mt-1">
                       <div className="text-purple-600 text-xs">
-                        รหัสเบิก: {service.cgcode || 'ไม่มี'}
+                        รหัสเบิก: {getBillingCode(service)}
                       </div>
                       <div className="text-orange-600 text-xs">
                         สิทธิธงฟ้า: {service.blue_flag_right || 'ไม่มี'}
@@ -153,7 +177,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
             </div>
             <div className="flex justify-between items-center mt-2">
               <div className="text-sm text-purple-600">
-                <strong>รหัสเบิก:</strong> {selectedService.cgcode || 'ไม่มี'}
+                <strong>รหัสเบิก:</strong> {getBillingCode(selectedService)}
               </div>
               <div className="text-sm text-orange-600">
                 <strong>สิทธิธงฟ้า:</strong> {selectedService.blue_flag_right || 'ไม่มี'}

@@ -95,6 +95,7 @@ const Index = () => {
           <AddServiceItem 
             onAddItem={handleAddItem}
             serviceDatabase={serviceDatabase}
+            insuranceType={insuranceType}
           />
 
           {/* Service Items Table */}
