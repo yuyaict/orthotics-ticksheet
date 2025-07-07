@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Stethoscope } from 'lucide-react';
 import PatientInfo from '@/components/PatientInfo';
 import AddServiceItem from '@/components/AddServiceItem';
@@ -14,6 +14,77 @@ const Index = () => {
   const [insuranceType, setInsuranceType] = useState('');
   const [serviceItems, setServiceItems] = useState<ServiceItem[]>([]);
   const { toast } = useToast();
+
+  // Function to get the appropriate billing code based on insurance type
+  const getBillingCode = (service: { cg_code: string; uc_code: string; ss_code: string }) => {
+    const insuranceOptions = [
+      { value: 'civil_servant', label: 'กรมบัญชีกลาง', group: 'cg' },
+      { value: 'universal', label: 'บัตรทอง', group: 'uc' },
+      { value: 'universal_disability', label: 'บัตรทอง (คนพิการ)', group: 'uc' },
+      { value: 'social_security', label: 'ประกันสังคม', group: 'ss' },
+      { value: 'social_security_disability', label: 'ประกันสังคม (ทุพลภาพ)', group: 'ss' },
+    ];
+
+    const selectedInsurance = insuranceOptions.find(option => option.value === insuranceType);
+    const group = selectedInsurance?.group || 'cg';
+
+    switch (group) {
+      case 'uc':
+        return service.uc_code || 'ไม่มี';
+      case 'ss':
+        return service.ss_code || 'ไม่มี';
+      default:
+        return service.cg_code || 'ไม่มี';
+    }
+  };
+
+  // Function to get the appropriate credit ceiling based on insurance type
+  const getCreditCeiling = (service: { cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number }) => {
+    switch (insuranceType) {
+      case 'civil_servant':
+        return service.cg_credit;
+      case 'universal':
+        return service.uc_credit;
+      case 'universal_disability':
+        return service.ucx_credit;
+      case 'social_security':
+        return service.ss_credit;
+      case 'social_security_disability':
+        return service.ssx_credit;
+      default:
+        return service.cg_credit;
+    }
+  };
+
+  // Function to get blue flag rights based on insurance type
+  const getBlueFlagRights = (service: { blue_flag_right: string }) => {
+    if (insuranceType === 'universal_disability' || insuranceType === 'social_security_disability') {
+      return service.blue_flag_right || 'ไม่มี';
+    }
+    return 'ไม่มี';
+  };
+
+  // Update service items when insurance type changes
+  useEffect(() => {
+    if (insuranceType && serviceItems.length > 0) {
+      const updatedItems = serviceItems.map(item => {
+        // Find the service in database to get updated values
+        const serviceData = serviceDatabase.find(service => service.code === item.code);
+        if (serviceData) {
+          const newCredit = getCreditCeiling(serviceData);
+          return {
+            ...item,
+            blueFlagRights: getBlueFlagRights(serviceData),
+            cgcode: getBillingCode(serviceData),
+            credit: newCredit,
+            totalCredit: newCredit * item.quantity
+          };
+        }
+        return item;
+      });
+      setServiceItems(updatedItems);
+    }
+  }, [insuranceType]);
 
   const handleAddItem = (item: ServiceItem) => {
     // ตรวจสอบรายการซ้ำ
