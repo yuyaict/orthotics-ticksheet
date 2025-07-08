@@ -8,15 +8,15 @@ import { ServiceItem } from '@/types/medical';
 
 interface AddServiceItemProps {
   onAddItem: (item: ServiceItem) => void;
-  serviceDatabase: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string }[];
+  serviceDatabase: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string }[];
   insuranceType: string;
 }
 
 const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatabase, insuranceType }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string } | null>(null);
+  const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string } | null>(null);
   const [quantity, setQuantity] = useState(1);
-  const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string }[]>([]);
+  const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string }[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Update selected service display when insurance type changes
@@ -83,7 +83,8 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
       const filtered = serviceDatabase.filter(
         service => 
           service.code.toLowerCase().includes(value.toLowerCase()) ||
-          service.name.toLowerCase().includes(value.toLowerCase())
+          service.name.toLowerCase().includes(value.toLowerCase()) ||
+          service.name_eng.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredServices(filtered);
       setShowSuggestions(true);
@@ -93,7 +94,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
     }
   };
 
-  const selectService = (service: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string }) => {
+  const selectService = (service: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string }) => {
     setSelectedService(service);
     setSearchTerm(`${service.code} - ${service.name}`);
     setShowSuggestions(false);
@@ -155,6 +156,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                   >
                     <div className="font-medium text-sm">{service.code}</div>
                     <div className="text-gray-600 text-sm">{service.name}</div>
+                    <div className="text-gray-500 text-xs italic">{service.name_eng}</div>
                     <div className="flex justify-between items-center mt-1">
                       <div className="text-blue-600 text-sm font-medium">{service.price.toLocaleString()} บาท</div>
                       <div className="text-green-600 text-sm font-medium">
@@ -166,8 +168,11 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                         รหัสเบิก: {getBillingCode(service)}
                       </div>
                       <div className="text-orange-600 text-xs">
-                        สิทธิธงฟ้า: {getBlueFlagRights(service)}
+                        หน่วย: {service.unit}
                       </div>
+                    </div>
+                    <div className="text-center text-xs text-gray-500 mt-1">
+                      สิทธิธงฟ้า: {getBlueFlagRights(service)}
                     </div>
                   </div>
                 ))}
