@@ -220,8 +220,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               <strong>ชื่อภาษาอังกฤษ:</strong> {selectedService.name_eng}
             </div>
             <div className="text-sm text-blue-600 mt-1 font-medium">
-              ราคาต่อหน่วย: {selectedService.price.toLocaleString()} บาท //| 
-              //ราคารวม: {(selectedService.price * quantity).toLocaleString()} บาท
+              ราคาต่อหน่วย: {selectedService.price.toLocaleString()} บาท
             </div>
             <div className="text-sm text-green-600 mt-1 font-medium">
               เบิกได้: {getCreditCeiling(selectedService).toLocaleString()}
