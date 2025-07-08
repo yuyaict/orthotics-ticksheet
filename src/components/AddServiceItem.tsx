@@ -135,13 +135,13 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
           <div className="md:col-span-2 relative">
             <Label htmlFor="service-search" className="text-sm font-medium text-gray-700">
-              ค้นหารายการ (รหัสหรือชื่อ)
+              ค้นหารายการ (รหัสหรือชื่อหรือชื่อภาษาอังกฤษหรือรหัสเบิก)
             </Label>
             <div className="relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <Input
                 id="service-search"
-                placeholder="พิมพ์รหัสหรือชื่อรายการ..."
+                placeholder="พิมพ์คำค้น..."
                 value={searchTerm}
                 onChange={(e) => handleSearch(e.target.value)}
                 className="pl-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
@@ -180,7 +180,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               </div>
             )}
           </div>
-          <div>
+          <div style="display:none">
             <Label htmlFor="quantity" className="text-sm font-medium text-gray-700">
               จำนวน
             </Label>
@@ -212,11 +212,11 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
             <div className="text-sm text-gray-500 italic mt-1">
               <strong>ชื่อภาษาอังกฤษ:</strong> {selectedService.name_eng}
             </div>
-            <div className="text-sm text-blue-600 font-medium">
+            <div className="text-sm text-blue-600 mt-1 font-medium">
               ราคาต่อหน่วย: {selectedService.price.toLocaleString()} บาท | 
               ราคารวม: {(selectedService.price * quantity).toLocaleString()} บาท
             </div>
-            <div className="text-sm text-green-600 font-medium">
+            <div className="text-sm text-green-600 mt-1 font-medium">
               เบิกได้: {getCreditCeiling(selectedService).toLocaleString()}
             </div>
             <div className="flex justify-between items-center mt-2">
