@@ -110,7 +110,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
         
         {items.length > 0 && (
           <div className="mt-6 flex justify-end gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 min-w-64" class="col-md-3">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 min-w-64">
               <div className="text-right">
                 <div className="text-lg font-semibold text-blue-800">
                   รวมทั้งสิ้น: {totalAmount.toLocaleString()} บาท
@@ -120,7 +120,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                 </div>
               </div>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 min-w-64" class="col-md-3">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 min-w-64">
               <div className="text-right">
                 <div className="text-lg font-semibold text-green-800">
                   รวมเบิกได้: {totalCredit.toLocaleString()} บาท
@@ -130,7 +130,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                 </div>
               </div>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 min-w-64" class="col-md-3">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 min-w-64">
               <div className="text-right">
                 <div className="text-lg font-semibold text-purple-800">
                   รวมลดหย่อนได้: {totalDeduction.toLocaleString()} บาท
@@ -140,7 +140,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                 </div>
               </div>
             </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 min-w-64" class="col-md-3">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 min-w-64">
               <div className="text-right">
                 <div className="text-lg font-semibold text-red-800">
                   รวมส่วนเกินสิทธิ: {excessPayment.toLocaleString()} บาท
