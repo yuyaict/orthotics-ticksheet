@@ -81,10 +81,17 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
     setSearchTerm(value);
     if (value.length > 0) {
       const filtered = serviceDatabase.filter(
-        service => 
-          service.code.toLowerCase().includes(value.toLowerCase()) ||
-          service.name.toLowerCase().includes(value.toLowerCase()) ||
-          service.name_eng.toLowerCase().includes(value.toLowerCase())
+        service => {
+          const searchValue = value.toLowerCase();
+          
+          // Get the appropriate billing code based on insurance type
+          const billingCode = getBillingCode(service).toLowerCase();
+          
+          return service.code.toLowerCase().includes(searchValue) ||
+                 service.name.toLowerCase().includes(searchValue) ||
+                 service.name_eng.toLowerCase().includes(searchValue) ||
+                 billingCode.includes(searchValue);
+        }
       );
       setFilteredServices(filtered);
       setShowSuggestions(true);
