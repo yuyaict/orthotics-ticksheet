@@ -15,8 +15,11 @@ interface PatientInfoProps {
 const PatientInfo: React.FC<PatientInfoProps> = ({ hn, setHn, insuranceType, setInsuranceType }) => {
   const insuranceOptions = [
     { value: 'civil_servant', label: 'กรมบัญชีกลาง', group: 'cg' },
-    { value: 'universal', label: 'บัตรทอง', group: 'uc' },
-    { value: 'universal_disability', label: 'บัตรทอง (คนพิการ)', group: 'uc' },
+    { value: 'pay_yourself', label: 'ชำระเงินเอง', group: 'ca' },
+    { value: 'foreigners', label: 'ผู้ป่วยต่างชาติ (+25%)', group: 'caplus' },
+    { value: 'bank_of_thailand', label: 'ธนาคารแห่งประเทศไทย', group: 'cgplus' },
+    { value: 'universal', label: 'บัตรทอง / ผู้ประกันตน', group: 'uc' },
+    { value: 'universal_disability', label: 'บัตรทอง (คนพิการ) / ผู้ประกันตน (คนพิการ)', group: 'uc' },
     { value: 'social_security', label: 'ประกันสังคม', group: 'ss' },
     { value: 'social_security_disability', label: 'ประกันสังคม (ทุพลภาพ)', group: 'ss' },
   ];
