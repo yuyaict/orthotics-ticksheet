@@ -3,6 +3,7 @@ export interface ServiceItem {
   id: string;
   code: string;
   name: string;
+  unit: string;
   blueFlagRights: string;
   cgcode: string;
   credit: number;

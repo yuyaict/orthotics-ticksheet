@@ -55,6 +55,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">รหัสรายการ</th>
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">รหัสเบิก</th>
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">ชื่อรายการ</th>
+                  <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">หน่วย</th>
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">สิทธิธงฟ้า</th>
                   <th className="border border-gray-200 px-4 py-3 text-center text-sm font-medium text-gray-700">จำนวน</th>
                   <th className="border border-gray-200 px-4 py-3 text-right text-sm font-medium text-gray-700">ราคาต่อหน่วย</th>
@@ -70,6 +71,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                     <td className="border border-gray-200 px-4 py-3 text-sm font-medium">{item.code}</td>
                     <td className="border border-gray-200 px-4 py-3 text-sm">{item.cgcode || '-'}</td>
                     <td className="border border-gray-200 px-4 py-3 text-sm">{item.name}</td>
+                    <td className="border border-gray-200 px-4 py-3 text-sm">{item.unit}</td>
                     <td className="border border-gray-200 px-4 py-3 text-sm">{item.blueFlagRights || '-'}</td>
                     <td className="border border-gray-200 px-4 py-3 text-center">
                       <Input

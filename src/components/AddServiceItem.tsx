@@ -107,6 +107,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
         id: Date.now().toString(),
         code: selectedService.code,
         name: selectedService.name,
+        unit: selectedService.unit,
         blueFlagRights: getBlueFlagRights(selectedService),
         cgcode: getBillingCode(selectedService),
         credit: creditCeiling,
@@ -223,7 +224,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                 <strong>รหัสเบิก:</strong> {getBillingCode(selectedService)}
               </div>
               <div className="text-sm text-teal-600">
-                <strong>หน่วยนับ:</strong> {selectedService.unit}
+                <strong>หน่วย:</strong> {selectedService.unit}
               </div>
             </div>
             <div className="text-sm text-orange-600 text-center mt-2">

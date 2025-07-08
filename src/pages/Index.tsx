@@ -103,6 +103,7 @@ const Index = () => {
     // Add default blueFlagRights if not provided
     const itemWithDefaults = {
       ...item,
+      unit: item.unit || '',
       blueFlagRights: item.blueFlagRights || 'ไม่มี',
       cgcode: item.cgcode || '',
       totalCredit: item.credit * item.quantity
