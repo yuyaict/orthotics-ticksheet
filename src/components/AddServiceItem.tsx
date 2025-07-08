@@ -135,7 +135,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
           <div className="md:col-span-2 relative">
             <Label htmlFor="service-search" className="text-sm font-medium text-gray-700">
-              ค้นหารายการ (รหัสหรือชื่อหรือชื่อภาษาอังกฤษหรือรหัสเบิก)
+              ค้นหารายการจาก (รหัส / ชื่อ / ชื่อภาษาอังกฤษ / รหัสเบิก)
             </Label>
             <div className="relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
