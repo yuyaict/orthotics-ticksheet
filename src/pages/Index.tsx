@@ -51,7 +51,7 @@ const Index = () => {
       case 'foreigners':
         return 0;
       case 'bank_of_thailand':
-        return service.price;
+        return service.cg_credit === 0 ? 0 : service.price;
       case 'universal':
         return service.uc_credit;
       case 'universal_disability':
