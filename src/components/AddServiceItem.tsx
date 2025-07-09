@@ -187,7 +187,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               </div>
             )}
           </div>
-          <div style={{display:none}}>
+          { /*<div>
             <Label htmlFor="quantity" className="text-sm font-medium text-gray-700">
               จำนวน
             </Label>
@@ -199,7 +199,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
               className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
             />
-          </div>
+          </div> */}
           <div>
             <Button 
               onClick={handleAddItem}
