@@ -187,7 +187,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               </div>
             )}
           </div>
-          <div>
+          <div style={display:none}>
             <Label htmlFor="quantity" className="text-sm font-medium text-gray-700">
               จำนวน
             </Label>
