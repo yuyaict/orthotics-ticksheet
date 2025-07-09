@@ -51,10 +51,16 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
   };
 
   // Function to get the appropriate credit ceiling based on insurance type
-  const getCreditCeiling = (service: { cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number }) => {
+  const getCreditCeiling = (service: { cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; price: number }) => {
     switch (insuranceType) {
       case 'civil_servant':
         return service.cg_credit;
+      case 'pay_yourself':
+        return 0;
+      case 'foreigners':
+        return 0;
+      case 'bank_of_thailand':
+        return service.price;
       case 'universal':
         return service.uc_credit;
       case 'universal_disability':
@@ -66,6 +72,14 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
       default:
         return service.cg_credit; // Default to cg_credit if no insurance selected
     }
+  };
+
+  // Function to get the display price based on insurance type
+  const getDisplayPrice = (service: { price: number }) => {
+    if (insuranceType === 'foreigners') {
+      return service.price * 1.25; // 25% increase for foreigners
+    }
+    return service.price;
   };
 
   // Function to get blue flag rights based on insurance type
@@ -110,6 +124,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
   const handleAddItem = () => {
     if (selectedService && quantity > 0) {
       const creditCeiling = getCreditCeiling(selectedService);
+      const displayPrice = getDisplayPrice(selectedService);
       const newItem: ServiceItem = {
         id: Date.now().toString(),
         code: selectedService.code,
@@ -119,8 +134,8 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
         cgcode: getBillingCode(selectedService),
         credit: creditCeiling,
         quantity,
-        unitPrice: selectedService.price,
-        totalPrice: selectedService.price * quantity,
+        unitPrice: displayPrice,
+        totalPrice: displayPrice * quantity,
         totalCredit: creditCeiling * quantity,
       };
       onAddItem(newItem);
@@ -166,7 +181,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                     <div className="text-gray-600 text-sm">{service.name}</div>
                     <div className="text-gray-500 text-xs italic">{service.name_eng}</div>
                     <div className="flex justify-between items-center mt-1">
-                      <div className="text-blue-600 text-sm font-medium">{service.price.toLocaleString()} บาท</div>
+                      <div className="text-blue-600 text-sm font-medium">{getDisplayPrice(service).toLocaleString()} บาท</div>
                       <div className="text-green-600 text-sm font-medium">
                         เบิกได้: {getCreditCeiling(service).toLocaleString()}
                       </div>
@@ -222,8 +237,8 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
             </div>
             <div className="flex justify-between items-center mt-2">
               <div className="text-sm text-blue-600 mt-1 font-medium">
-                ราคาต่อหน่วย: {selectedService.price.toLocaleString()} บาท
-                {/* | ราคารวม: {(selectedService.price * quantity).toLocaleString()} บาท */}
+                ราคาต่อหน่วย: {getDisplayPrice(selectedService).toLocaleString()} บาท
+                {/* | ราคารวม: {(getDisplayPrice(selectedService) * quantity).toLocaleString()} บาท */}
               </div>
               <div className="text-sm text-green-600 mt-1 font-medium">
                 เบิกได้: {getCreditCeiling(selectedService).toLocaleString()}
