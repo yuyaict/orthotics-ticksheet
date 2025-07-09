@@ -140,7 +140,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-          <div className="md:col-span-2 relative">
+          <div className="md:col-span-3 relative">
             <Label htmlFor="service-search" className="text-sm font-medium text-gray-700">
               ค้นหารายการจาก (รหัส / ชื่อ / ชื่อภาษาอังกฤษ / รหัสเบิก)
             </Label>
