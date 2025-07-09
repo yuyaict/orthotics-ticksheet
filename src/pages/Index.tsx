@@ -19,6 +19,9 @@ const Index = () => {
   const getBillingCode = (service: { cg_code: string; uc_code: string; ss_code: string }) => {
     const insuranceOptions = [
       { value: 'civil_servant', label: 'กรมบัญชีกลาง', group: 'cg' },
+      { value: 'pay_yourself', label: 'จ่ายเอง', group: 'cg' },
+      { value: 'foreigners', label: 'ชาวต่างชาติ', group: 'cg' },
+      { value: 'bank_of_thailand', label: 'ธนาคารแห่งประเทศไทย', group: 'cg' },
       { value: 'universal', label: 'บัตรทอง', group: 'uc' },
       { value: 'universal_disability', label: 'บัตรทอง (คนพิการ)', group: 'uc' },
       { value: 'social_security', label: 'ประกันสังคม', group: 'ss' },
@@ -39,10 +42,16 @@ const Index = () => {
   };
 
   // Function to get the appropriate credit ceiling based on insurance type
-  const getCreditCeiling = (service: { cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number }) => {
+  const getCreditCeiling = (service: { cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; price: number }) => {
     switch (insuranceType) {
       case 'civil_servant':
         return service.cg_credit;
+      case 'pay_yourself':
+        return 0;
+      case 'foreigners':
+        return 0;
+      case 'bank_of_thailand':
+        return service.price;
       case 'universal':
         return service.uc_credit;
       case 'universal_disability':
@@ -54,6 +63,14 @@ const Index = () => {
       default:
         return service.cg_credit;
     }
+  };
+
+  // Function to get the display price based on insurance type
+  const getDisplayPrice = (service: { price: number }) => {
+    if (insuranceType === 'foreigners') {
+      return service.price * 1.25; // 25% increase for foreigners
+    }
+    return service.price;
   };
 
   // Function to get blue flag rights based on insurance type
@@ -72,11 +89,14 @@ const Index = () => {
         const serviceData = serviceDatabase.find(service => service.code === item.code);
         if (serviceData) {
           const newCredit = getCreditCeiling(serviceData);
+          const newPrice = getDisplayPrice(serviceData);
           return {
             ...item,
             blueFlagRights: getBlueFlagRights(serviceData),
             cgcode: getBillingCode(serviceData),
             credit: newCredit,
+            unitPrice: newPrice,
+            totalPrice: newPrice * item.quantity,
             totalCredit: newCredit * item.quantity
           };
         }
