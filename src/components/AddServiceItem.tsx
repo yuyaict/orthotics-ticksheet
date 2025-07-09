@@ -15,7 +15,7 @@ interface AddServiceItemProps {
 const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatabase, insuranceType }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string } | null>(null);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1.0);
   const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string }[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -141,7 +141,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
       onAddItem(newItem);
       setSearchTerm('');
       setSelectedService(null);
-      setQuantity(1);
+      setQuantity(1.0);
     }
   };
 

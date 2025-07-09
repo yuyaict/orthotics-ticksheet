@@ -132,14 +132,16 @@ const Index = () => {
   };
 
   const handleUpdateQuantity = (id: string, quantity: number) => {
+    // Ensure minimum quantity is 0.1
+    const validQuantity = Math.max(0.1, quantity);
     setServiceItems(prev => 
       prev.map(item => {
         if (item.id === id) {
           return {
             ...item,
-            quantity,
-            totalPrice: item.unitPrice * quantity,
-            totalCredit: item.credit * quantity
+            quantity: validQuantity,
+            totalPrice: item.unitPrice * validQuantity,
+            totalCredit: item.credit * validQuantity
           };
         }
         return item;
