@@ -265,7 +265,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                 หน่วย: <strong> {selectedService.unit} </strong>
               </div>
             </div>            
-            <div className="text-sm text-blue-500 text-center mt-2">
+            <div className="text-sm text-blue-400 text-center mt-2">
               สิทธิธงฟ้า: <strong> {getBlueFlagRights(selectedService)} </strong>
             </div>
           </div>
