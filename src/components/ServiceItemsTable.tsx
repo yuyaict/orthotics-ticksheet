@@ -112,7 +112,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
         {items.length > 0 && (
           <div className="mt-6">
             {/* Desktop and Tablet Layout */}
-            <div className="hidden md:grid-cols-4">
+            <div className="hidden md:flex justify-end gap-4">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 min-w-64">
                 <div className="text-right">
                   <div className="text-lg font-semibold text-blue-800">
