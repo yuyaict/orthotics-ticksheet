@@ -59,7 +59,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">สิทธิธงฟ้า</th>
                   <th className="border border-gray-200 px-4 py-3 text-center text-sm font-medium text-gray-700">จำนวน</th>
                   <th className="border border-gray-200 px-4 py-3 text-right text-sm font-medium text-gray-700">ราคาต่อหน่วย</th>
-                  <th className="border border-gray-200 px-4 py-3 text-right text-sm font-medium text-gray-700">เพดานเบิก</th>
+                  <th className="border border-gray-200 px-4 py-3 text-right text-sm font-medium text-gray-700">เบิกได้</th>
                   <th className="border border-gray-200 px-4 py-3 text-right text-sm font-medium text-gray-700">ราคารวม</th>
                   <th className="border border-gray-200 px-4 py-3 text-center text-sm font-medium text-gray-700">จัดการ</th>
                 </tr>
