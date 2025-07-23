@@ -233,7 +233,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
         {selectedService && (
           <div className="mt-4 p-3 bg-blue-50 rounded-lg">
             <div className="text-sm text-gray-700">
-              <strong>รายการที่เลือก:</strong> {selectedService.code} - {selectedService.name}
+              รายการที่เลือก: <strong> {selectedService.code} </strong> - <strong> {selectedService.name} </strong>
             </div>
             <div className="text-sm text-gray-500 italic mt-1">
               {/* <strong>ชื่อภาษาอังกฤษ:</strong> */}
