@@ -110,44 +110,91 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
         )}
         
         {items.length > 0 && (
-          <div className="mt-6 flex justify-end gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 min-w-64">
-              <div className="text-right">
-                <div className="text-lg font-semibold text-blue-800">
-                  รวมทั้งสิ้น: {totalAmount.toLocaleString()} บาท
+          <div className="mt-6">
+            {/* Desktop and Tablet Layout */}
+            <div className="hidden md:flex justify-end gap-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 min-w-64">
+                <div className="text-right">
+                  <div className="text-lg font-semibold text-blue-800">
+                    รวมทั้งสิ้น: {totalAmount.toLocaleString()} บาท
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    ({items.length} รายการ)
+                  </div>
                 </div>
-                <div className="text-sm text-gray-600 mt-1">
-                  ({items.length} รายการ)
+              </div>
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 min-w-64">
+                <div className="text-right">
+                  <div className="text-lg font-semibold text-green-800">
+                    รวมเบิกได้: {totalCredit.toLocaleString()} บาท
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    (เพดานเบิกที่ใช้ได้จริง)
+                  </div>
+                </div>
+              </div>
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 min-w-64">
+                <div className="text-right">
+                  <div className="text-lg font-semibold text-purple-800">
+                    รวมลดหย่อนได้: {totalDeduction.toLocaleString()} บาท
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    (สำหรับรายการที่มีสิทธิธงฟ้า)
+                  </div>
+                </div>
+              </div>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 min-w-64">
+                <div className="text-right">
+                  <div className="text-lg font-semibold text-red-800">
+                    รวมส่วนเกินสิทธิ: {excessPayment.toLocaleString()} บาท
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    (ยอดที่ต้องชำระจริง)
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 min-w-64">
-              <div className="text-right">
-                <div className="text-lg font-semibold text-green-800">
-                  รวมเบิกได้: {totalCredit.toLocaleString()} บาท
-                </div>
-                <div className="text-sm text-gray-600 mt-1">
-                  (เพดานเบิกที่ใช้ได้จริง)
-                </div>
-              </div>
-            </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 min-w-64">
-              <div className="text-right">
-                <div className="text-lg font-semibold text-purple-800">
-                  รวมลดหย่อนได้: {totalDeduction.toLocaleString()} บาท
-                </div>
-                <div className="text-sm text-gray-600 mt-1">
-                  (สำหรับรายการที่มีสิทธิธงฟ้า)
+
+            {/* Mobile Layout */}
+            <div className="md:hidden space-y-3">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="text-center">
+                  <div className="text-lg font-semibold text-blue-800">
+                    รวมทั้งสิ้น: {totalAmount.toLocaleString()} บาท
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    ({items.length} รายการ)
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 min-w-64">
-              <div className="text-right">
-                <div className="text-lg font-semibold text-red-800">
-                  รวมส่วนเกินสิทธิ: {excessPayment.toLocaleString()} บาท
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="text-center">
+                  <div className="text-lg font-semibold text-green-800">
+                    รวมเบิกได้: {totalCredit.toLocaleString()} บาท
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    (เพดานเบิกที่ใช้ได้จริง)
+                  </div>
                 </div>
-                <div className="text-sm text-gray-600 mt-1">
-                  (ยอดที่ต้องชำระจริง)
+              </div>
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <div className="text-center">
+                  <div className="text-lg font-semibold text-purple-800">
+                    รวมลดหย่อนได้: {totalDeduction.toLocaleString()} บาท
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    (สำหรับรายการที่มีสิทธิธงฟ้า)
+                  </div>
+                </div>
+              </div>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="text-center">
+                  <div className="text-lg font-semibold text-red-800">
+                    รวมส่วนเกินสิทธิ: {excessPayment.toLocaleString()} บาท
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    (ยอดที่ต้องชำระจริง)
+                  </div>
                 </div>
               </div>
             </div>
