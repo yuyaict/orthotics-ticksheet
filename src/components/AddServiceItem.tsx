@@ -254,12 +254,12 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                 {/* | ราคารวม: {(getDisplayPrice(selectedService) * quantity).toLocaleString()} บาท */}
               </div>
               <div className="text-sm text-green-600 mt-1 font-medium">
-                เบิกได้: <strong> {getCreditCeiling(selectedService).toLocaleString()} </strong>
+                เบิกได้: <strong> {getCreditCeiling(selectedService).toLocaleString()} </strong> บาท
               </div>
             </div>
             <div className="flex justify-between items-center mt-2">
               <div className="text-sm text-purple-600">
-                รหัสเบิก: <strong> {getBillingCode(selectedService)} </strong> บาท
+                รหัสเบิก: <strong> {getBillingCode(selectedService)} </strong>
               </div>
               <div className="text-sm text-orange-600">
                 หน่วย: <strong> {selectedService.unit} </strong>
