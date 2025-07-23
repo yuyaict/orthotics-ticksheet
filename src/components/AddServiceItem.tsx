@@ -8,15 +8,15 @@ import { ServiceItem } from '@/types/medical';
 
 interface AddServiceItemProps {
   onAddItem: (item: ServiceItem) => void;
-  serviceDatabase: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string }[];
+  serviceDatabase: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string; item_group: string }[];
   insuranceType: string;
 }
 
 const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatabase, insuranceType }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string } | null>(null);
+  const [selectedService, setSelectedService] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string; item_group: string } | null>(null);
   const [quantity, setQuantity] = useState(1.0);
-  const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string }[]>([]);
+  const [filteredServices, setFilteredServices] = useState<{ code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string; item_group: string }[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Update selected service display when insurance type changes
@@ -115,7 +115,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
     }
   };
 
-  const selectService = (service: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string }) => {
+  const selectService = (service: { code: string; name: string; price: number; cg_credit: number; uc_credit: number; ucx_credit: number; ss_credit: number; ssx_credit: number; cg_code: string; uc_code: string; ss_code: string; blue_flag_right: string; name_eng: string; unit: string; item_group: string }) => {
     setSelectedService(service);
     setSearchTerm(`${service.code} - ${service.name}`);
     setShowSuggestions(false);
@@ -194,6 +194,9 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                         หน่วย: {service.unit}
                       </div>
                     </div>
+                    <div className="text-center text-xs text-pink-600 mt-1">
+                      <strong>ประเภท:</strong> {service.item_group}
+                    </div>
                     <div className="text-center text-xs text-gray-500 mt-1">
                       สิทธิธงฟ้า: {getBlueFlagRights(service)}
                     </div>
@@ -251,6 +254,9 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               <div className="text-sm text-teal-600">
                 <strong>หน่วย:</strong> {selectedService.unit}
               </div>
+            </div>
+            <div className="text-sm text-pink-600 text-center mt-2">
+              <strong>ประเภท:</strong> {selectedService.item_group}
             </div>
             <div className="text-sm text-orange-600 text-center mt-2">
               <strong>สิทธิธงฟ้า:</strong> {getBlueFlagRights(selectedService)}
