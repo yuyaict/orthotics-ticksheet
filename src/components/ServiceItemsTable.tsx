@@ -51,7 +51,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
             <table className="w-full border-collapse">
               <thead>
                 <tr className="bg-gray-50">
-                  <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">ลำดับ</th>
+                  {/* <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">ลำดับ</th> */}
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">รหัสรายการ</th>
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">รหัสเบิก</th>
                   <th className="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">ชื่อรายการ</th>
@@ -67,7 +67,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
               <tbody>
                 {items.map((item, index) => (
                   <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="border border-gray-200 px-4 py-3 text-center text-sm">{index + 1}</td>
+                    {/* <td className="border border-gray-200 px-4 py-3 text-center text-sm">{index + 1}</td> */}
                     <td className="border border-gray-200 px-4 py-3 text-sm font-medium">{item.code}</td>
                     <td className="border border-gray-200 px-4 py-3 text-sm">{item.cgcode || '-'}</td>
                     <td className="border border-gray-200 px-4 py-3 text-sm">{item.name}</td>
