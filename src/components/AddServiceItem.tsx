@@ -241,7 +241,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
             </div>
             <div className="flex justify-between items-center mt-1">
               <div className="text-sm text-gray-500">
-                <strong>ประเภท:</strong> {selectedService.item_group}
+                ประเภท: <strong> {selectedService.item_group} </strong>
               </div>
               <div className="text-sm text-pink-600 font-medium">
                 {/* <strong>อายุการใช้งาน:</strong> {selectedService.terms_of_use || 'ไม่มี'} */}
@@ -250,7 +250,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
             </div>
             <div className="flex justify-between items-center mt-2">
               <div className="text-sm text-blue-600 mt-1 font-medium">
-                ราคาต่อหน่วย: <strong> {getDisplayPrice(selectedService).toLocaleString()} </strong> บาท
+                ราคา: <strong> {getDisplayPrice(selectedService).toLocaleString()} </strong> บาท
                 {/* | ราคารวม: {(getDisplayPrice(selectedService) * quantity).toLocaleString()} บาท */}
               </div>
               <div className="text-sm text-green-600 mt-1 font-medium">
@@ -259,9 +259,9 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
             </div>
             <div className="flex justify-between items-center mt-2">
               <div className="text-sm text-purple-600">
-                รหัสเบิก: <strong> {getBillingCode(selectedService)} </strong>
+                รหัสเบิก: <strong> {getBillingCode(selectedService)} </strong> บาท
               </div>
-              <div className="text-sm text-teal-600">
+              <div className="text-sm text-orange-600">
                 หน่วย: <strong> {selectedService.unit} </strong>
               </div>
             </div>            
