@@ -79,7 +79,12 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                         min="0.1"
                         step="0.1"
                         value={item.quantity}
-                        onChange={(e) => onUpdateQuantity(item.id, parseFloat(e.target.value) || 0.1)}
+                        onChange={(e) => {
+                          const value = parseFloat(e.target.value) || 0.1;
+                          const roundedValue = Math.round(value * 10) / 10; // รับเฉพาะทศนิยม 1 ตำแหน่ง
+                          onUpdateQuantity(item.id, roundedValue);
+                        }}
+                        onWheel={(e) => e.currentTarget.blur()} // ปิดการ scroll mouse
                         className="w-20 mx-auto text-center border-gray-300"
                       />
                     </td>
