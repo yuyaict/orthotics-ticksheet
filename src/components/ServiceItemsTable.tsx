@@ -112,8 +112,8 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
         {items.length > 0 && (
           <div className="mt-6">
             {/* Desktop and Tablet Layout */}
-            <div className="hidden md:flex justify-end gap-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 min-w-48">
+            <div className="hidden grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 min-w-64">
                 <div className="text-right">
                   <div className="text-lg font-semibold text-blue-800">
                     รวมทั้งสิ้น: {totalAmount.toLocaleString()} บาท
