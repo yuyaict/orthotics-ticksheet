@@ -183,7 +183,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                     <div className="flex justify-between items-center text-xs text-pink-600 mt-1">
                       <div> ประเภท: <strong> {service.item_group}</strong></div>
                       {/* <div><strong>อายุการใช้งาน:</strong> {service.terms_of_use || 'ไม่มี'}</div>*/}
-                      <strong> service.terms_of_use </strong>
+                      <div><strong> {service.terms_of_use} </strong></div>
                     </div>
                     <div className="flex justify-between items-center mt-1">
                       <div className="text-blue-600 text-sm font-medium">ราคา: <strong>{getDisplayPrice(service).toLocaleString()}</strong> </div>
