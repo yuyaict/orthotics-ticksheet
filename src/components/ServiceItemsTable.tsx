@@ -80,17 +80,20 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                         value={item.quantity}
                         onChange={(e) => {
                           const inputValue = e.target.value;
-                          if (inputValue === '' || inputValue === '0') {
+                          
+                          // หากเป็นค่าว่างให้ตั้งเป็น 0
+                          if (inputValue === '') {
                             onUpdateQuantity(item.id, 0);
                             return;
-                          }                          
-                          const value = parseFloat(inputValue);
-                          if (isNaN(value) || value < 0) return;
-                          if (value >= 0) {
-                            onUpdateQuantity(item.id, value);
-                            return;
                           }
-                          const roundedValue = Math.round(value * 10) / 10; // รับเฉพาะทศนิยม 1 ตำแหน่ง
+                          
+                          const value = parseFloat(inputValue);
+                          
+                          // หากไม่ใช่ตัวเลขหรือเป็นค่าติดลบ ไม่ให้อัพเดต
+                          if (isNaN(value) || value < 0) return;
+                          
+                          // ปัดเศษให้เหลือทศนิยม 1 ตำแหน่ง
+                          const roundedValue = Math.round(value * 10) / 10;
                           onUpdateQuantity(item.id, roundedValue);
                         }}
                         onWheel={(e) => e.currentTarget.blur()} // ปิดการ scroll mouse
