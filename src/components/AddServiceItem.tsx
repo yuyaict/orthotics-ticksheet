@@ -180,7 +180,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                     <div className="font-medium text-sm">{service.code}</div>
                     <div className="text-gray-600 text-sm">{service.name}</div>
                     <div className="text-gray-500 text-xs italic">{service.name_eng}</div>
-                    <div className="flex justify-between items-center text-xs text-pink-600 mt-1">
+                    <div className="flex justify-between items-center text-xs text-rose-600 mt-1">
                       <div> ประเภท: <strong> {service.item_group}</strong></div>
                       {/* <div><strong>อายุการใช้งาน:</strong> {service.terms_of_use || 'ไม่มี'}</div>*/}
                       <div><strong> {service.terms_of_use} </strong></div>
@@ -199,7 +199,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                         หน่วย: <strong>{service.unit}</strong>
                       </div>
                     </div>
-                    <div className="text-center text-xs text-gray-500 mt-1">
+                    <div className="text-center text-xs text-sky-600 mt-1">
                       สิทธิธงฟ้า: <strong>{getBlueFlagRights(service)}</strong>
                     </div>
                   </div>
