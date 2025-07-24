@@ -78,12 +78,13 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                         type="number"
                         min="0.1"
                         max="100"
+                        maxlength="3"
                         value={item.quantity}
                         onChange={(e) => {
                           const inputValue = e.target.value;
                           
                           // หากเป็นค่าว่างให้ตั้งเป็น 0
-                          if (inputValue === '') {
+                          if (inputValue === '' || inputValue === '00' || inputValue === '000') {
                             onUpdateQuantity(item.id, 1);
                             return;
                           }
