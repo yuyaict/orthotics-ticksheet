@@ -180,6 +180,10 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                     <div className="font-medium text-sm">{service.code}</div>
                     <div className="text-gray-600 text-sm">{service.name}</div>
                     <div className="text-gray-500 text-xs italic">{service.name_eng}</div>
+                    <div className="flex justify-between items-center text-xs text-pink-600 mt-1">
+                      <div><strong>ประเภท:</strong> {service.item_group}</div>
+                      <div><strong>อายุการใช้งาน:</strong> {service.terms_of_use || 'ไม่มี'}</div>
+                    </div>
                     <div className="flex justify-between items-center mt-1">
                       <div className="text-blue-600 text-sm font-medium">{getDisplayPrice(service).toLocaleString()} บาท</div>
                       <div className="text-green-600 text-sm font-medium">
@@ -193,10 +197,6 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                       <div className="text-orange-600 text-xs">
                         หน่วย: {service.unit}
                       </div>
-                    </div>
-                    <div className="flex justify-between items-center text-xs text-pink-600 mt-1">
-                      <div><strong>ประเภท:</strong> {service.item_group}</div>
-                      <div><strong>อายุการใช้งาน:</strong> {service.terms_of_use || 'ไม่มี'}</div>
                     </div>
                     <div className="text-center text-xs text-gray-500 mt-1">
                       สิทธิธงฟ้า: {getBlueFlagRights(service)}
@@ -250,11 +250,11 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
             </div>
             <div className="flex justify-between items-center mt-2">
               <div className="text-sm text-blue-600 mt-1 font-medium">
-                ราคา: <strong> {getDisplayPrice(selectedService).toLocaleString()} </strong> บาท
+                ราคา: <strong> {getDisplayPrice(selectedService).toLocaleString()} </strong>
                 {/* | ราคารวม: {(getDisplayPrice(selectedService) * quantity).toLocaleString()} บาท */}
               </div>
               <div className="text-sm text-green-600 mt-1 font-medium">
-                เบิกได้: <strong> {getCreditCeiling(selectedService).toLocaleString()} </strong> บาท
+                เบิกได้: <strong> {getCreditCeiling(selectedService).toLocaleString()} </strong>
               </div>
             </div>
             <div className="flex justify-between items-center mt-2">
