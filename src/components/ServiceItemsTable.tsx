@@ -76,15 +76,30 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                     <td className="border border-gray-200 px-4 py-3 text-center">
                       <Input
                         type="number"
-                        min="0.1"
-                        step="0.1"
+                        min="0"
                         value={item.quantity}
                         onChange={(e) => {
-                          const value = parseFloat(e.target.value) || 0.1;
+                          const inputValue = e.target.value;
+                          if (inputValue === '' || inputValue === '0') {
+                            onUpdateQuantity(item.id, 0);
+                            return;
+                          }
+                          const value = parseFloat(inputValue);
+                          if (isNaN(value) || value < 0) return;
+                          if (value > 0 && value < 0.1) {
+                            onUpdateQuantity(item.id, 0.1);
+                            return;
+                          }
                           const roundedValue = Math.round(value * 10) / 10; // รับเฉพาะทศนิยม 1 ตำแหน่ง
                           onUpdateQuantity(item.id, roundedValue);
                         }}
                         onWheel={(e) => e.currentTarget.blur()} // ปิดการ scroll mouse
+                        onKeyDown={(e) => {
+                          // ปิดการใช้ลูกศรขึ้นลงในการเปลี่ยนค่า
+                          if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                            e.preventDefault();
+                          }
+                        }}
                         className="w-20 mx-auto text-center border-gray-300"
                       />
                     </td>
