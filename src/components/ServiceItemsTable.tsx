@@ -75,15 +75,15 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                     <td className="border border-gray-200 px-4 py-3 text-sm">{item.blueFlagRights || '-'}</td>
                     <td className="border border-gray-200 px-4 py-3 text-center">
                       <Input
-                        type="number"
-                        value={item.quantity}
+                        type="number"                        
                         min="0.1"
                         max="100"
+                        value={item.quantity}
                         onChange={(e) => {
                           const inputValue = e.target.value;
                           
                           // หากเป็นค่าว่างให้ตั้งเป็น 0
-                          if (inputValue === '' || inputValue === '00' || inputValue === '000') {
+                          if (inputValue === '') {
                             onUpdateQuantity(item.id, 1);
                             return;
                           }
