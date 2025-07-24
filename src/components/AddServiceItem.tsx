@@ -249,16 +249,16 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                 { selectedService.terms_of_use }
               </div>
             </div>
-            <div className="flex justify-between items-center mt-2">
-              <div className="text-sm text-blue-600 mt-1 font-medium">
+            <div className="flex justify-between items-center mt-1">
+              <div className="text-sm text-blue-600 font-medium">
                 ราคา: <strong> {getDisplayPrice(selectedService).toLocaleString()} </strong>
                 {/* | ราคารวม: {(getDisplayPrice(selectedService) * quantity).toLocaleString()} บาท */}
               </div>
-              <div className="text-sm text-green-600 mt-1 font-medium">
+              <div className="text-sm text-green-600 font-medium">
                 เบิกได้: <strong> {getCreditCeiling(selectedService).toLocaleString()} </strong>
               </div>
             </div>
-            <div className="flex justify-between items-center mt-2">
+            <div className="flex justify-between items-center mt-1">
               <div className="text-sm text-purple-600">
                 รหัสเบิก: <strong> {getBillingCode(selectedService)} </strong>
               </div>
@@ -266,7 +266,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                 หน่วย: <strong> {selectedService.unit} </strong>
               </div>
             </div>            
-            <div className="text-sm text-cyan-600 text-center mt-2">
+            <div className="text-sm text-sky-600 text-center mt-1">
               สิทธิธงฟ้า: <strong> {getBlueFlagRights(selectedService)} </strong>
             </div>
           </div>
