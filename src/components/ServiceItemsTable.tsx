@@ -84,16 +84,17 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                           
                           // หากเป็นค่าว่างให้ตั้งเป็น 0
                           if (inputValue === '') {
-                            onUpdateQuantity(item.id, 1);
+                            onUpdateQuantity(item.id, 0);
                             return;
                           }
                           
+                          // ตรวจสอบจำนวนหลักไม่เกิน 3 หลัก (รวมจุดทศนิยม)
+                          if (inputValue.length > 5) return; // 3 หลัก + จุด + 1 ทศนิยม = 5 ตัวอักษร
+                          
                           const value = parseFloat(inputValue);
                           
-                          // หากไม่ใช่ตัวเลขหรือเป็นค่าติดลบ ไม่ให้อัพเดต
-                          //if (isNaN(value) || value < 0) return;
-                          if (isNaN(value) || value < 0) {
-                            onUpdateQuantity(item.id, 1);
+                          // หากไม่ใช่ตัวเลขหรือเป็นค่าติดลบ หรือเกิน 100 ไม่ให้อัพเดต
+                          if (isNaN(value) || value < 0 || value > 100) {
                             return;
                           } 
                           
