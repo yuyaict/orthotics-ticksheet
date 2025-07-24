@@ -77,6 +77,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                       <Input
                         type="number"
                         min="0"
+                        step="any"
                         value={item.quantity}
                         onChange={(e) => {
                           const inputValue = e.target.value;
@@ -86,10 +87,11 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                           }
                           const value = parseFloat(inputValue);
                           if (isNaN(value) || value < 0) return;
-                          if (value > 0 && value < 0.1) {
+                          { /*if (value > 0 && value < 0.1) {
                             onUpdateQuantity(item.id, 0.1);
                             return;
                           }
+                          */}
                           const roundedValue = Math.round(value * 10) / 10; // รับเฉพาะทศนิยม 1 ตำแหน่ง
                           onUpdateQuantity(item.id, roundedValue);
                         }}
