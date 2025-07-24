@@ -76,7 +76,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                     <td className="border border-gray-200 px-4 py-3 text-center">
                       <Input
                         type="number"                        
-                        min="0.1"
+                        min="0"
                         max="100"
                         value={item.quantity}
                         onChange={(e) => {
