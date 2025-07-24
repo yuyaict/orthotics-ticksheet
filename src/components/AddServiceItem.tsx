@@ -236,7 +236,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
             <div className="text-sm text-gray-700">
               รายการที่เลือก: <strong> {selectedService.code} </strong> - <strong> {selectedService.name} </strong>
             </div>
-            <div className="text-sm text-gray-500 italic mt-1">
+            <div className="text-sm text-gray-500 italic">
               {/* <strong>ชื่อภาษาอังกฤษ:</strong> */}
               {selectedService.name_eng}
             </div>
@@ -246,7 +246,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               </div>
               <div className="text-sm text-pink-600 font-medium">
                 {/* <strong>อายุการใช้งาน:</strong> {selectedService.terms_of_use || 'ไม่มี'} */}
-                { selectedService.terms_of_use }
+                <strong>{ selectedService.terms_of_use }</strong>
               </div>
             </div>
             <div className="flex justify-between items-center mt-1">
