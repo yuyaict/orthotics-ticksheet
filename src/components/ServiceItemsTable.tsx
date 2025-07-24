@@ -83,7 +83,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                           
                           // หากเป็นค่าว่างให้ตั้งเป็น 0
                           if (inputValue === '') {
-                            onUpdateQuantity(item.id, 0);
+                            onUpdateQuantity(item.id, 1);
                             return;
                           }
                           
