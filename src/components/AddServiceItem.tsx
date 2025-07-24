@@ -241,7 +241,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               {selectedService.name_eng}
             </div>
             <div className="flex justify-between items-center mt-1">
-              <div className="text-sm text-stone-500">
+              <div className="text-sm text-rose-500">
                 ประเภท: <strong> {selectedService.item_group} </strong>
               </div>
               <div className="text-sm text-pink-600 font-medium">
