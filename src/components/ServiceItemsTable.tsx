@@ -77,7 +77,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                       <Input
                         type="number"                        
                         min="0"
-                        max="999"
+                        max="100"
                         value={item.quantity}
                         onChange={(e) => {
                           const inputValue = e.target.value;
@@ -94,19 +94,17 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                             return;
                           }
                           
-                          // ตรวจสอบจำนวนหลักไม่เกิน 5 ตัวอักษร (999.9)
-                          if (inputValue.length > 5) return;
+                          // ตรวจสอบจำนวนหลักไม่เกิน 4 ตัวอักษร (100.0)
+                          if (inputValue.length > 4) return;
                           
                           const value = parseFloat(inputValue);
                           
-                          // หากไม่ใช่ตัวเลขหรือเป็นค่าติดลบ หรือเกิน 999 ไม่ให้อัพเดต
-                          if (isNaN(value) || value < 0 || value > 999) {
+                          // หากไม่ใช่ตัวเลขหรือเป็นค่าติดลบ หรือเกิน 100 ไม่ให้อัพเดต
+                          if (isNaN(value) || value < 0 || value > 100) {
                             return;
                           } 
                           
-                          // หากค่าน้อยกว่า 1 ให้ปัดขึ้นเป็นเลขจำนวนเต็มบวก กรณีอื่นให้เป็นตัวเลขตามที่กรอก
-                          //const roundedValue = value < 1 ? Math.ceil(value) : value;
-                          //onUpdateQuantity(item.id, roundedValue);
+                          onUpdateQuantity(item.id, value);
                         }}
                         onWheel={(e) => e.currentTarget.blur()} // ปิดการ scroll mouse
                         onKeyDown={(e) => {
