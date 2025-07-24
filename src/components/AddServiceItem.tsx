@@ -180,10 +180,14 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                     <div className="font-medium text-sm">{service.code}</div>
                     <div className="text-gray-600 text-sm">{service.name}</div>
                     <div className="text-gray-500 text-xs italic">{service.name_eng}</div>
-                    <div className="flex justify-between items-center text-xs text-rose-600 mt-1">
-                      <div> ประเภท: <strong> {service.item_group}</strong></div>
+                    <div className="flex justify-between items-center text-xs mt-1">
+                      <div className="text-rose-500"> 
+                        ประเภท: <strong> {service.item_group}</strong>
+                      </div>
                       {/* <div><strong>อายุการใช้งาน:</strong> {service.terms_of_use || 'ไม่มี'}</div>*/}
-                      <div><strong> {service.terms_of_use} </strong></div>
+                      <div className="text-pink-600">
+                        <strong> {service.terms_of_use} </strong>
+                      </div>
                     </div>
                     <div className="flex justify-between items-center mt-1">
                       <div className="text-blue-600 text-sm font-medium">ราคา: <strong>{getDisplayPrice(service).toLocaleString()}</strong> </div>
@@ -244,7 +248,7 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               <div className="text-sm text-rose-500">
                 ประเภท: <strong> {selectedService.item_group} </strong>
               </div>
-              <div className="text-sm text-pink-600 font-medium">
+              <div className="text-sm text-pink-600">
                 {/* <strong>อายุการใช้งาน:</strong> {selectedService.terms_of_use || 'ไม่มี'} */}
                 <strong>{ selectedService.terms_of_use }</strong>
               </div>
