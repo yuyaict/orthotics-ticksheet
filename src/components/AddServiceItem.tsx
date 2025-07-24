@@ -181,25 +181,26 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
                     <div className="text-gray-600 text-sm">{service.name}</div>
                     <div className="text-gray-500 text-xs italic">{service.name_eng}</div>
                     <div className="flex justify-between items-center text-xs text-pink-600 mt-1">
-                      <div><strong>ประเภท:</strong> {service.item_group}</div>
-                      <div><strong>อายุการใช้งาน:</strong> {service.terms_of_use || 'ไม่มี'}</div>
+                      <div> ประเภท: <strong> {service.item_group}</strong></div>
+                      {/* <div><strong>อายุการใช้งาน:</strong> {service.terms_of_use || 'ไม่มี'}</div>*/}
+                      <strong> service.terms_of_use </strong>
                     </div>
                     <div className="flex justify-between items-center mt-1">
-                      <div className="text-blue-600 text-sm font-medium">{getDisplayPrice(service).toLocaleString()} บาท</div>
+                      <div className="text-blue-600 text-sm font-medium">ราคา: <strong>{getDisplayPrice(service).toLocaleString()}</strong> </div>
                       <div className="text-green-600 text-sm font-medium">
-                        เบิกได้: {getCreditCeiling(service).toLocaleString()}
+                        เบิกได้: <strong>{getCreditCeiling(service).toLocaleString()}</strong>
                       </div>
                     </div>
                     <div className="flex justify-between items-center mt-1">
                       <div className="text-purple-600 text-xs">
-                        รหัสเบิก: {getBillingCode(service)}
+                        รหัสเบิก: <strong>{getBillingCode(service)}</strong>
                       </div>
                       <div className="text-orange-600 text-xs">
-                        หน่วย: {service.unit}
+                        หน่วย: <strong>{service.unit}</strong>
                       </div>
                     </div>
                     <div className="text-center text-xs text-gray-500 mt-1">
-                      สิทธิธงฟ้า: {getBlueFlagRights(service)}
+                      สิทธิธงฟ้า: <strong>{getBlueFlagRights(service)}</strong>
                     </div>
                   </div>
                 ))}
