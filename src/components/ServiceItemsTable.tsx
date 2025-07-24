@@ -98,8 +98,8 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                             return;
                           } 
                           
-                          // ปัดเศษให้เหลือทศนิยม 1 ตำแหน่ง
-                          const roundedValue = Math.round(value * 10) / 10;
+                          // ปัดเศษให้เป็นเลขจำนวนเต็มบวก
+                          const roundedValue = Math.round(value);
                           onUpdateQuantity(item.id, roundedValue);
                         }}
                         onWheel={(e) => e.currentTarget.blur()} // ปิดการ scroll mouse
