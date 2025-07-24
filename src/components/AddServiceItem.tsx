@@ -170,8 +170,8 @@ const AddServiceItem: React.FC<AddServiceItemProps> = ({ onAddItem, serviceDatab
               />
             </div>
             {showSuggestions && filteredServices.length > 0 && (
-              <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                {filteredServices.slice(0, 50).map((service) => (
+              <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-100 overflow-y-auto">
+                {filteredServices.slice(0, 100).map((service) => (
                   <div
                     key={service.code}
                     className="px-4 py-3 hover:bg-blue-50 cursor-pointer border-b last:border-b-0"
