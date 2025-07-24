@@ -79,12 +79,12 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                         min="0"
                         value={item.quantity}
                         onChange={(e) => {
+                          { /*
                           const inputValue = e.target.value;
                           if (inputValue === '' || inputValue === '0') {
                             onUpdateQuantity(item.id, 0);
                             return;
-                          }
-                          { /*
+                          }                          
                           const value = parseFloat(inputValue);
                           if (isNaN(value) || value < 0) return;
                           if (value > 0 && value < 0.1) {
