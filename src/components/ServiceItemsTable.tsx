@@ -78,8 +78,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                         type="number"
                         value={item.quantity}
                         min="0.1"
-                        max="100"                        
-                        onKeyPress="if(this.value.length==3) return false;"
+                        max="100"
                         onChange={(e) => {
                           const inputValue = e.target.value;
                           
