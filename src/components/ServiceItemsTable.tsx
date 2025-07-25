@@ -77,7 +77,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                       <Input
                         type="number"                        
                         min="0"
-                        max="1000"
+                        max="999.9"
                         value={item.quantity}
                         onChange={(e) => {
                           const inputValue = e.target.value;
@@ -122,7 +122,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                             e.preventDefault();
                           }
                         }}
-                        onKeyPress={(e) => { if(this.value.length==3) return false; }}
+                        onKeyPress={(e) => { if(this.value.length==4) return false; }}
                         className="w-20 mx-auto text-center border-gray-300"
                       />
                     </td>
