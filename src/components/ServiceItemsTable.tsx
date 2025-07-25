@@ -91,7 +91,6 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                           // กรณีที่กรอก 00 หรือ 000 ให้เปลี่ยนเป็น 0
                           if (inputValue === '00' || inputValue === '000') {
                             onUpdateQuantity(item.id, 0);
-                            {item.quantity} = 0;
                             return;
                           }
                           
