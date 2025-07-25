@@ -94,6 +94,15 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                             return;
                           }
                           
+                          // หากค่าเดิมเป็น 0 และกรอกตัวเลขใหม่ ให้แทนที่ 0
+                          if (item.quantity === 0 && inputValue.length === 1 && inputValue !== '0') {
+                            const value = parseFloat(inputValue);
+                            if (!isNaN(value) && value >= 0 && value <= 100) {
+                              onUpdateQuantity(item.id, value);
+                            }
+                            return;
+                          }
+                          
                           // ตรวจสอบจำนวนหลักไม่เกิน 4 ตัวอักษร (100.0)
                           if (inputValue.length > 4) return;
                           
