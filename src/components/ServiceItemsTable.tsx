@@ -78,6 +78,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                         type="number"                        
                         min="0"
                         max="999.9"
+                        step="0.5"
                         value={item.quantity}
                         onChange={(e) => {
                           const inputValue = e.target.value;
