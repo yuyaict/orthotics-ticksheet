@@ -77,7 +77,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                       <Input
                         type="number"                        
                         min="0"
-                        max="999"
+                        max="1000"
                         value={item.quantity}
                         onChange={(e) => {
                           const inputValue = e.target.value;
@@ -97,19 +97,19 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                           // หากค่าเดิมเป็น 0 และกรอกตัวเลขใหม่ ให้แทนที่ 0
                           if (item.quantity === 0 && inputValue.length === 1 && inputValue !== '0') {
                             const value = parseFloat(inputValue);
-                            if (!isNaN(value) && value >= 0 && value <= 999) {
+                            if (!isNaN(value) && value >= 0 && value <= 999.9) {
                               onUpdateQuantity(item.id, value);
                             }
                             return;
                           }
                           
-                          // ตรวจสอบจำนวนหลักไม่เกิน 4 ตัวอักษร (100.0)
-                          if (inputValue.length > 4) return;
+                          // ตรวจสอบจำนวนหลักไม่เกิน 5 ตัวอักษร (999.9)
+                          if (inputValue.length > 5) return;
                           
                           const value = parseFloat(inputValue);
                           
                           // หากไม่ใช่ตัวเลขหรือเป็นค่าติดลบ หรือเกิน 999 ไม่ให้อัพเดต
-                          if (isNaN(value) || value < 0 || value > 999) {
+                          if (isNaN(value) || value < 0 || value > 999.9) {
                             return;
                           } 
                           
