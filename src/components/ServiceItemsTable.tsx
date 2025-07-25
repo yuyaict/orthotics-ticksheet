@@ -122,6 +122,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                             e.preventDefault();
                           }
                         }}
+                        onKeyPress={(e) => { if(this.value.length==3) return false; }}
                         className="w-20 mx-auto text-center border-gray-300"
                       />
                     </td>
