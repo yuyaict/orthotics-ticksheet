@@ -116,13 +116,13 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                           
                           onUpdateQuantity(item.id, value);
                         }}
-                        onWheel={(e) => e.currentTarget.blur()} // ปิดการ scroll mouse
-                        onKeyDown={(e) => {
+                        //onWheel={(e) => e.currentTarget.blur()} // ปิดการ scroll mouse
+                        //onKeyDown={(e) => {
                           // ปิดการใช้ลูกศรขึ้นลงในการเปลี่ยนค่า
-                          if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-                            e.preventDefault();
-                          }
-                        }}
+                          //if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                            //e.preventDefault();
+                          //}
+                        //}}
                         onKeyPress={(e) => { if(this.value.length==4) return false; }}
                         className="w-20 mx-auto text-center border-gray-300"
                       />
