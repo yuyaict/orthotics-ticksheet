@@ -77,7 +77,7 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                       <Input
                         type="number"                        
                         min="0"
-                        max="100"
+                        max="999"
                         value={item.quantity}
                         onChange={(e) => {
                           const inputValue = e.target.value;
@@ -91,13 +91,14 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                           // กรณีที่กรอก 00 หรือ 000 ให้เปลี่ยนเป็น 0
                           if (inputValue === '00' || inputValue === '000') {
                             onUpdateQuantity(item.id, 0);
+                            {item.quantity} = 0;
                             return;
                           }
                           
                           // หากค่าเดิมเป็น 0 และกรอกตัวเลขใหม่ ให้แทนที่ 0
                           if (item.quantity === 0 && inputValue.length === 1 && inputValue !== '0') {
                             const value = parseFloat(inputValue);
-                            if (!isNaN(value) && value >= 0 && value <= 100) {
+                            if (!isNaN(value) && value >= 0 && value <= 999) {
                               onUpdateQuantity(item.id, value);
                             }
                             return;
@@ -108,8 +109,8 @@ const ServiceItemsTable: React.FC<ServiceItemsTableProps> = ({ items, onUpdateQu
                           
                           const value = parseFloat(inputValue);
                           
-                          // หากไม่ใช่ตัวเลขหรือเป็นค่าติดลบ หรือเกิน 100 ไม่ให้อัพเดต
-                          if (isNaN(value) || value < 0 || value > 100) {
+                          // หากไม่ใช่ตัวเลขหรือเป็นค่าติดลบ หรือเกิน 999 ไม่ให้อัพเดต
+                          if (isNaN(value) || value < 0 || value > 999) {
                             return;
                           } 
                           
